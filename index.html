@@ -1,11 +1,52 @@
 <html>
 <head>
 	<title>SkaSequencer</title>
+	<link rel="stylesheet" href="css/style.css"/>
 	<script src="src/drums.js"></script>
 	<script src="src/instrument.js"></script>
 	<script src="src/composition.js"></script>
+	<script src="src/sequencer.js"></script>
+	<script src="libs/angular.js"></script>
+	<script src="libs/jquery-1.11.2.js"></script>
 	<script src="app.js"></script>
 </head>
 <body>
+	<table>
+		<tr>
+			<td><input type="button" name="kick" value="kick" onclick="play('kick');"/></td>
+			<td><input type="button" name="snare" value="snare" onclick="play('snare');"/></td>
+			<td><input type="button" name="hihat" value="hihat" onclick="play('hihat');"/></td>
+			<td><input type="button" name="ride" value="ride" onclick="play('ride');"/></td>
+			<td><input type="button" name="play" value="play" onclick="run();"/></td>
+			<td><input type="button" name="stop" value="stop" onclick="stop();"/></td>
+		</tr>
+	</table>
+
+	<div class="matrix" id="matrix">
+		<div class="matrix row">
+			<div class="matrix element" id="step13"></div>
+			<div class="matrix element" id="step14"></div>
+			<div class="matrix element" id="step15"></div>
+			<div class="matrix element" id="step16"></div>
+		</div>
+		<div class="matrix row">
+			<div class="matrix element" id="step9"></div>
+			<div class="matrix element" id="step10"></div>
+			<div class="matrix element" id="step11"></div>
+			<div class="matrix element" id="step12"></div>
+		</div>
+		<div class="matrix row">
+			<div class="matrix element" id="step5"></div>
+			<div class="matrix element" id="step6"></div>
+			<div class="matrix element" id="step7"></div>
+			<div class="matrix element" id="step8"></div>
+		</div>
+		<div class="matrix row">
+			<div class="matrix element" id="step1"></div>
+			<div class="matrix element" id="step2"></div>
+			<div class="matrix element" id="step3"></div>
+			<div class="matrix element" id="step4"></div>
+		</div>
+	</div>
 </body>
 </html>
