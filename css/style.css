@@ -15,6 +15,10 @@
 	margin: 10px;
 	border: 1px solid black;
 	border-radius: 8px;
+	box-shadow: 0px 3px 0px 0px rgb(34,34,34), /* 1st Shadow */  
+                0px 7px 10px 0px rgb(170,170,17), /* 1nd Shadow */  
+                inset 0px 1px 1px 0px rgba(250, 250, 250, .2), /* 3rd Shadow */   
+                inset 0px -12px 35px 0px rgba(170, 170, 0, .4); /* 4th Shadow */ 
 }
 
 .current {
@@ -28,7 +32,7 @@
 
 .playback.stepCounter {
 	width: 50px;
-	height: 50px;
+	height: 20px;
 	vertical-align: 50px;
 	text-align: center;
 	background-color: black;
@@ -40,19 +44,28 @@
 	margin: 2px;
 }
 
+.playback.sync {
+	float: left;
+	width: 150px;
+	height: 20px;
+	font-family: Verdana;
+	font-size: 12px;
+}
+
 .display {
 	margin: 1px;
 	float: left;
 	height: 270px;
 	width: 650px;
-	border: 1px solid red;
+	border: 1px solid lightblue;
+	border-radius: 4px;	
 }
 
 .library {
 	background-color: lightblue;
 	margin-left: 1px;
 	margin-top: 10px;
-	height: 235px;
+	height: 245px;
 	width: 650px;
 	border: 1px solid white;
 	border-radius: 4px;		
@@ -60,6 +73,7 @@
 
 .map {
 	margin: 1px;
+	float:right;
 }
 
 .map.row {
@@ -78,16 +92,67 @@
 	font-size: 13px;
 	text-align: center;
 	vertical-align: middle;
+	display: inline-block;
+	box-shadow: 0px 1px 0px 0px rgb(34,34,34), /* 1st Shadow */  
+            0px 5px 5px 0px rgb(17,170,170), /* 1nd Shadow */  
+            inset 0px 1px 1px 0px rgba(250, 250, 250, .1), /* 3rd Shadow */   
+            inset 0px -12px 15px 0px rgba(0, 0, 0, .1); /* 4th Shadow */ 
+}
+
+.map.element.disabled {
+	background-color: white;
 }
 
 .mapSelected {
 	color: white;
-	background-color: orange;
+	background-color: #1155ff;
+}
+
+.patternSpace {
+	float:left;
+	width: 400px;
+	height: 240px;
+}
+
+.pattern {
+	margin: 6px;
+}
+
+.pattern.row {
+	clear: both;
+}
+
+.pattern.element {
+	float:left;
+	width: 90;
+	height: 50;
+	padding: 1px;
+	margin: 2px;
+	border: 1px solid white;
+	border-radius: 4px;
+	font-family: Verdana;
+	font-size: 13px;
+	text-align: center;
+	vertical-align: middle;
+	display: inline-block;	
+}
+
+.patternDisabled {
+	background-color: white;
+}
+
+.patternSelected {
+	color: white;
+	background-color: #ff99ff;
+	box-shadow: 0px 1px 0px 0px rgb(255,100,255), /* 1st Shadow */  
+        0px 3px 3px 0px rgb(17,170,17), /* 1nd Shadow */  
+        inset 0px 1px 1px 0px rgba(25, 250, 25, .1), /* 3rd Shadow */   
+        inset 0px -12px 15px 0px rgba(0, 0, 0, .1); /* 4th Shadow */ 
 }
 
 .playback {
 	float: left;
-	margin: 1px;
+	margin: 2px 2px 2px 6px;
 	width: 500px;
 }
 
@@ -100,14 +165,68 @@
 	height: 50;
 	padding: 1px;
 	margin: 2px;
-	border: 1px solid black;
+	border: 1px solid white;
 	border-radius: 8px;
 	font-family: Verdana;
 	font-size: 13px;
 	text-align: center;
 	vertical-align: middle;
+	display: inline-block;
+}
+
+.playback.element.play {
+	color: white;
+	background-color: #33cc44;
+	box-shadow: 0px 1px 0px 0px rgb(34,34,34), /* 1st Shadow */  
+        0px 3px 3px 0px rgb(17,170,17), /* 1nd Shadow */  
+        inset 0px 1px 1px 0px rgba(25, 250, 25, .1), /* 3rd Shadow */   
+        inset 0px -12px 15px 0px rgba(0, 0, 0, .1); /* 4th Shadow */ 
+}
+
+.playback.element.stop {
+	color: white;
+	background-color: black;
+	box-shadow: 0px 1px 0px 0px rgb(34,34,34), /* 1st Shadow */  
+        0px 4px 4px 0px rgb(170,170,170), /* 1nd Shadow */  
+        inset 0px 1px 1px 0px rgba(250, 250, 250, .1), /* 3rd Shadow */   
+        inset 0px -12px 15px 0px rgba(0, 0, 0, .1); /* 4th Shadow */ 
 }
 
 .resetFloat {
 	clear: both;
+}
+
+select {
+	border: 1px solid;
+	border-radius: 8px;
+	background-color: white;
+	margin: 2px;
+}
+
+label {
+	font-family: Verdana;
+	font-size: 13px;
+	margin: 2px;
+};
+
+.metal {
+  position: relative;
+  margin: 40px auto;
+  outline: none;
+  
+  font: bold 6em/2em "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+  text-align: center;
+  color: hsla(0,0%,20%,1);
+  text-shadow: hsla(0,0%,40%,.5) 0 -1px 0, hsla(0,0%,100%,.6) 0 2px 1px;
+  
+  background-color: hsl(0,0%,90%);
+  box-shadow: inset hsla(0,0%,15%,  1) 0  0px 0px 4px, /* border */
+    inset hsla(0,0%,15%, .8) 0 -1px 5px 4px, /* soft SD */
+    inset hsla(0,0%,0%, .25) 0 -1px 0px 7px, /* bottom SD */
+    inset hsla(0,0%,100%,.7) 0  2px 1px 7px, /* top HL */
+    
+    hsla(0,0%, 0%,.15) 0 -5px 6px 4px, /* outer SD */
+    hsla(0,0%,100%,.5) 0  5px 6px 4px; /* outer HL */ 
+  
+  transition: color .2s;
 }

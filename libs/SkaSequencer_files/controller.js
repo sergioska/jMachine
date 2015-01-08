@@ -43,7 +43,7 @@ machine.controller('MachineController', ['$scope', 'Sound', 'Sequencer', 'socket
 		$scope.matrix = pattern0.matrix;
 		pattern.push(pattern0);
 		$scope.patternSelected = 0;
-		$scope.patternDisabled = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+		$scope.patternDisabled = [1, 1, 1, 1, 1, 1, 1, 1];
 
 	}
 	/*
