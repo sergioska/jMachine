@@ -25,7 +25,7 @@ module.exports = function(grunt) {
                 },
                 files: {
                     'dist/js/jmachine.js': ['src/js/json/**/*.js', 'src/js/*.js', 'src/js/angular/*.js', '!src/js/angular/ws.js'],
-                    'dist/css/jmachine.css': 'src/css/*.css'
+                    'dist/css/jmachine.css': ['src/css/*.css', 'bower_components/angular-ui-select/dist/select.min.css']
                 }
             }
         },
@@ -44,7 +44,19 @@ module.exports = function(grunt) {
     					cwd: 'bower_components/angular',
     					src: ['angular.min.js'],
     					dest: 'dist/js'	
-    				}
+    				},
+				{
+					expand: true,
+					cwd: 'bower_components/angular-sanitize',
+					src: ['angular-sanitize.min.js'],
+					dest: 'dist/js'
+				},
+				{
+					expand: true,
+					cwd: 'bower_components/angular-ui-select/dist',
+					src: ['angular-ui-select.min.js'],
+					dest: 'dist/js'
+				}
     			]
     		}
 	},
