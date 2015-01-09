@@ -24,8 +24,13 @@ module.exports = function(grunt) {
                     separator: '\n'
                 },
                 files: {
-                    'dist/js/jmachine.js': ['src/js/json/**/*.js', 'src/js/*.js', 'src/js/angular/*.js', '!src/js/angular/ws.js'],
-                    'dist/css/jmachine.css': ['src/css/*.css', 'bower_components/angular-ui-select/dist/select.min.css']
+                    'dist/js/jmachine.js': ['src/js/json/**/*.js', 
+                                            'src/js/*.js', 
+                                            'src/js/angular/*.js', 
+                                            '!src/js/angular/ws.js'],
+                    'dist/css/jmachine.css': ['src/css/*.css', 
+                                              'bower_components/angular-ui-select/dist/select.min.css',
+                                              'bower_components/select2/select2.css']
                 }
             }
         },
@@ -45,18 +50,18 @@ module.exports = function(grunt) {
     					src: ['angular.min.js'],
     					dest: 'dist/js'	
     				},
-				{
-					expand: true,
-					cwd: 'bower_components/angular-sanitize',
-					src: ['angular-sanitize.min.js'],
-					dest: 'dist/js'
-				},
-				{
-					expand: true,
-					cwd: 'bower_components/angular-ui-select/dist',
-					src: ['angular-ui-select.min.js'],
-					dest: 'dist/js'
-				}
+    				{
+    					expand: true,
+    					cwd: 'bower_components/angular-sanitize',
+    					src: ['angular-sanitize.min.js'],
+    					dest: 'dist/js'
+    				},
+    				{
+    					expand: true,
+    					cwd: 'bower_components/angular-ui-select/dist',
+    					src: ['select.min.js'],
+    					dest: 'dist/js'
+    				}
     			]
     		}
 	},

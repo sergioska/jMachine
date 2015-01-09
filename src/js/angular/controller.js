@@ -1,4 +1,4 @@
-var machine = angular.module('appMachine', []);
+var machine = angular.module('appMachine', ['ngSanitize','ui.select']);
 
 machine.controller('MachineController', ['$scope', 'Sound', 'Sequencer', function($scope, Sound, sequencer){
 
@@ -9,6 +9,7 @@ machine.controller('MachineController', ['$scope', 'Sound', 'Sequencer', functio
 	$scope.sync = false;
 	$scope.mapSelected = 0;
 	$scope.matrix = [[]];
+	$scope.drumItems = ['909 drums'];
 
 	$scope.init = function() {
 
