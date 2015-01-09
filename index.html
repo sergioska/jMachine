@@ -1,21 +1,9 @@
 <html ng-app="appMachine">
 <head>
 	<title>SkaSequencer</title>
-	<link rel="stylesheet" href="css/style.css"/>
-	<script src="src/json/drums64.js"></script>
-	<script src="src/instrument.js"></script>
-	<script src="src/composition.js"></script>
-	<script src="src/pattern.js"></script>
-	<!--
-	<script src="src/sequencer.js"></script>
-	-->
-	<script src="libs/angular.js"></script>
-	<script src="../jMachineService/node_modules/socket.io/node_modules/socket.io-client/dist/socket.io.js"></script>
-	<script src="src/angular/controller.js"></script>
-	<script src="src/angular/ws.js"></script>
-	<script src="src/angular/sequencer.js"></script>
-	<script src="src/angular/sound.js"></script>
-
+	<link rel="stylesheet" href="dist/css/jmachine.css"/>
+	<script src="dist/js/angular.min.js"></script>
+	<script src="dist/js/jmachine.min.js"></script>
 </head>
 <body>
 	<div ng-controller="MachineController" ng-init="init();" ng-keyup="event=$event">
