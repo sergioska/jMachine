@@ -1,6 +1,6 @@
 Drums = {
 	"sounds": {
-		"kick": "sounds/kick.wav",
+		"kick": "sounds/kick909.wav",
 		"snare": "sounds/snare.wav",
 		"hihat": "sounds/hihat.wav",
 		"crash": "crash.wav",

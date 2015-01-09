@@ -5,29 +5,10 @@ machine.controller('MachineController', ['$scope', 'Sound', 'Sequencer', 'socket
 	var drums = {};
 	var pattern = [];
 	$scope.patternSelected = 0;
-	$scope.patternDisabled = [1, 1, 1, 1, 1, 1, 1, 1];
+	$scope.patternDisabled = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
 	$scope.sync = false;
 	$scope.mapSelected = 0;
 	$scope.matrix = [[]];
-	/*
-	$scope.matrix = [
-						[1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0],
-					 	[0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0],
-					 	[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-					 	[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-					 	[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-					 	[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-					 	[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-					 	[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-					 	[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-					 	[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-					 	[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-					 	[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-					 	[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-					 	[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-					 	[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-					 	[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-					];*/
 
 	$scope.init = function() {
 
@@ -35,7 +16,7 @@ machine.controller('MachineController', ['$scope', 'Sound', 'Sequencer', 'socket
 
 		composition.setTime(120);
 
-		var jsonSounds = Object.create(Drums);
+		var jsonSounds = Object.create(Drums64);
 		drums = composition.createInstrument('drums', jsonSounds);
 		$scope.select(0);
 

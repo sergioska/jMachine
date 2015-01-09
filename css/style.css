@@ -1,5 +1,5 @@
 .matrix {
-	float: right;
+	float: left;
 	margin: 1px;
 }
 
@@ -15,14 +15,29 @@
 	margin: 10px;
 	border: 1px solid black;
 	border-radius: 8px;
-	box-shadow: 0px 3px 0px 0px rgb(34,34,34), /* 1st Shadow */  
-                0px 7px 10px 0px rgb(170,170,17), /* 1nd Shadow */  
-                inset 0px 1px 1px 0px rgba(250, 250, 250, .2), /* 3rd Shadow */   
-                inset 0px -12px 35px 0px rgba(170, 170, 0, .4); /* 4th Shadow */ 
 }
 
 .current {
-	background-color: orange;
+	background-color: #ffc933;
+	box-shadow: 0px 3px 0px 0px rgb(34,34,34), /* 1st Shadow */  
+            0px 7px 10px 0px rgb(170,170,17), /* 1nd Shadow */  
+            inset 0px 1px 1px 0px rgba(250, 250, 250, .2), /* 3rd Shadow */   
+            inset 0px -12px 35px 0px rgba(170, 170, 0, .2); /* 4th Shadow */ 
+}
+
+.currentSoundSelected {
+	background-color: #66ddff;
+	box-shadow: 0px 3px 0px 0px rgb(34,34,34), /* 1st Shadow */  
+        0px 7px 10px 0px rgb(17,170,170), /* 1nd Shadow */  
+        inset 0px 1px 1px 0px rgba(250, 250, 250, .2), /* 3rd Shadow */   
+        inset 0px -12px 15px 0px rgba(0, 0, 0, .2); /* 4th Shadow */ 	
+}
+
+.stepLight {
+	box-shadow: 0px 3px 0px 0px rgb(34,34,34), /* 1st Shadow */  
+        0px 7px 10px 0px rgb(170,170,17), /* 1nd Shadow */  
+        inset 0px 1px 1px 0px rgba(250, 250, 250, .2), /* 3rd Shadow */   
+        inset 0px -12px 35px 0px rgba(170, 170, 0, .2); /* 4th Shadow */ 
 }
 
 .controls {
@@ -55,7 +70,7 @@
 .display {
 	margin: 1px;
 	float: left;
-	height: 270px;
+	height: 245px;
 	width: 650px;
 	border: 1px solid lightblue;
 	border-radius: 4px;	
@@ -72,8 +87,8 @@
 }
 
 .map {
-	margin: 1px;
-	float:right;
+	margin: 1px 1px 1px 6px;
+	float:left;
 }
 
 .map.row {
@@ -93,10 +108,6 @@
 	text-align: center;
 	vertical-align: middle;
 	display: inline-block;
-	box-shadow: 0px 1px 0px 0px rgb(34,34,34), /* 1st Shadow */  
-            0px 5px 5px 0px rgb(17,170,170), /* 1nd Shadow */  
-            inset 0px 1px 1px 0px rgba(250, 250, 250, .1), /* 3rd Shadow */   
-            inset 0px -12px 15px 0px rgba(0, 0, 0, .1); /* 4th Shadow */ 
 }
 
 .map.element.disabled {
@@ -105,12 +116,16 @@
 
 .mapSelected {
 	color: white;
-	background-color: #1155ff;
+	background-color: #66ddff;
+	box-shadow: 0px 1px 0px 0px rgb(34,34,34), /* 1st Shadow */  
+        0px 5px 5px 0px rgb(17,170,170), /* 1nd Shadow */  
+        inset 0px 1px 1px 0px rgba(250, 250, 250, .1), /* 3rd Shadow */   
+        inset 0px -12px 15px 0px rgba(0, 0, 0, .1); /* 4th Shadow */ 
 }
 
 .patternSpace {
-	float:left;
-	width: 400px;
+	float:right;
+	width: 350px;
 	height: 240px;
 }
 
@@ -143,7 +158,7 @@
 
 .patternSelected {
 	color: white;
-	background-color: #ff99ff;
+	background-color: #ff01ff;
 	box-shadow: 0px 1px 0px 0px rgb(255,100,255), /* 1st Shadow */  
         0px 3px 3px 0px rgb(17,170,17), /* 1nd Shadow */  
         inset 0px 1px 1px 0px rgba(25, 250, 25, .1), /* 3rd Shadow */   
@@ -161,7 +176,7 @@
 }
 
 .playback.element {
-	width: 90;
+	width: 80;
 	height: 50;
 	padding: 1px;
 	margin: 2px;
@@ -208,25 +223,3 @@ label {
 	font-size: 13px;
 	margin: 2px;
 };
-
-.metal {
-  position: relative;
-  margin: 40px auto;
-  outline: none;
-  
-  font: bold 6em/2em "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
-  text-align: center;
-  color: hsla(0,0%,20%,1);
-  text-shadow: hsla(0,0%,40%,.5) 0 -1px 0, hsla(0,0%,100%,.6) 0 2px 1px;
-  
-  background-color: hsl(0,0%,90%);
-  box-shadow: inset hsla(0,0%,15%,  1) 0  0px 0px 4px, /* border */
-    inset hsla(0,0%,15%, .8) 0 -1px 5px 4px, /* soft SD */
-    inset hsla(0,0%,0%, .25) 0 -1px 0px 7px, /* bottom SD */
-    inset hsla(0,0%,100%,.7) 0  2px 1px 7px, /* top HL */
-    
-    hsla(0,0%, 0%,.15) 0 -5px 6px 4px, /* outer SD */
-    hsla(0,0%,100%,.5) 0  5px 6px 4px; /* outer HL */ 
-  
-  transition: color .2s;
-}

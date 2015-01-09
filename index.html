@@ -2,7 +2,7 @@
 <head>
 	<title>SkaSequencer</title>
 	<link rel="stylesheet" href="css/style.css"/>
-	<script src="src/json/drums.js"></script>
+	<script src="src/json/drums64.js"></script>
 	<script src="src/instrument.js"></script>
 	<script src="src/composition.js"></script>
 	<script src="src/pattern.js"></script>
@@ -79,7 +79,7 @@
 					<div class="map element" ng-click="play('kick');select(0);" ng-class="{mapSelected: mapSelected==0}">Kick</div>
 					<div class="map element" ng-click="play('snare');select(1);" ng-class="{mapSelected: mapSelected==1}">Snare</div>
 					<div class="map element" ng-click="play('hihat');select(2);" ng-class="{mapSelected: mapSelected==2}">Hi Hat</div>
-					<div class="map element disabled"></div>
+					<div class="map element" ng-click="play('clap');select(3);" ng-class="{mapSelected: mapSelected==3}">Clap</div>
 				</div>
 			</div>
 		</div>
@@ -98,28 +98,28 @@
 
 		<div class="matrix" id="matrix">
 			<div class="matrix row">
-				<div class="matrix element" id="step12" ng-class="{current: (stepValue==12 || soundSelected[12]==1)}" ng-click="selectStep(12);"></div>
-				<div class="matrix element" id="step13" ng-class="{current: (stepValue==13 || soundSelected[13]==1)}" ng-click="selectStep(13);"></div>
-				<div class="matrix element" id="step14" ng-class="{current: (stepValue==14 || soundSelected[14]==1)}" ng-click="selectStep(14);"></div>
-				<div class="matrix element" id="step15" ng-class="{current: (stepValue==15 || soundSelected[15]==1)}" ng-click="selectStep(15);"></div>
+				<div class="matrix element" id="step12" ng-class="{stepLight: soundSelected[12]!=1, current: stepValue==12, currentSoundSelected: (soundSelected[12]==1 && stepValue!=12)}" ng-click="selectStep(12);"></div>
+				<div class="matrix element" id="step13" ng-class="{stepLight: soundSelected[13]!=1, current: stepValue==13, currentSoundSelected: (soundSelected[13]==1 && stepValue!=13)}" ng-click="selectStep(13);"></div>
+				<div class="matrix element" id="step14" ng-class="{stepLight: soundSelected[14]!=1, current: stepValue==14, currentSoundSelected: (soundSelected[14]==1 && stepValue!=14)}" ng-click="selectStep(14);"></div>
+				<div class="matrix element" id="step15" ng-class="{stepLight: soundSelected[15]!=1, current: stepValue==15, currentSoundSelected: (soundSelected[15]==1 && stepValue!=15)}" ng-click="selectStep(15);"></div>
 			</div>
 			<div class="matrix row">
-				<div class="matrix element" id="step8" ng-class="{current: (stepValue==8 || soundSelected[8]==1)}" ng-click="selectStep(8);"></div>
-				<div class="matrix element" id="step9" ng-class="{current: (stepValue==9 || soundSelected[9]==1)}" ng-click="selectStep(9);"></div>
-				<div class="matrix element" id="step10" ng-class="{current: (stepValue==10 || soundSelected[10]==1)}"ng-click="selectStep(10);"></div>
-				<div class="matrix element" id="step11" ng-class="{current: (stepValue==11 || soundSelected[11]==1)}" ng-click="selectStep(11);"></div>
+				<div class="matrix element" id="step8" ng-class="{stepLight: soundSelected[8]!=1, current: stepValue==8, currentSoundSelected: (soundSelected[8]==1 && stepValue!=8)}" ng-click="selectStep(8);"></div>
+				<div class="matrix element" id="step9" ng-class="{stepLight: soundSelected[9]!=1, current: stepValue==9, currentSoundSelected: (soundSelected[9]==1 && stepValue!=9)}" ng-click="selectStep(9);"></div>
+				<div class="matrix element" id="step10" ng-class="{stepLight: soundSelected[10]!=1, current: stepValue==10, currentSoundSelected: (soundSelected[10]==1 && stepValue!=10)}"ng-click="selectStep(10);"></div>
+				<div class="matrix element" id="step11" ng-class="{stepLight: soundSelected[11]!=1, current: stepValue==11, currentSoundSelected: (soundSelected[11]==1 && stepValue!=11)}" ng-click="selectStep(11);"></div>
 			</div>
 			<div class="matrix row">
-				<div class="matrix element" id="step4" ng-class="{current: (stepValue==4 || soundSelected[4]==1)}" ng-click="selectStep(4);"></div>
-				<div class="matrix element" id="step5" ng-class="{current: (stepValue==5 || soundSelected[5]==1)}" ng-click="selectStep(5);"></div>
-				<div class="matrix element" id="step6" ng-class="{current: (stepValue==6 || soundSelected[6]==1)}" ng-click="selectStep(6);"></div>
-				<div class="matrix element" id="step7" ng-class="{current: (stepValue==7 || soundSelected[7]==1)}" ng-click="selectStep(7);"></div>
+				<div class="matrix element" id="step4" ng-class="{stepLight: soundSelected[4]!=1, current: stepValue==4, currentSoundSelected: (soundSelected[4]==1 && stepValue!=4)}" ng-click="selectStep(4);"></div>
+				<div class="matrix element" id="step5" ng-class="{stepLight: soundSelected[5]!=1, current: stepValue==5, currentSoundSelected: (soundSelected[5]==1 && stepValue!=5)}" ng-click="selectStep(5);"></div>
+				<div class="matrix element" id="step6" ng-class="{stepLight: soundSelected[6]!=1, current: stepValue==6, currentSoundSelected: (soundSelected[6]==1 && stepValue!=6)}" ng-click="selectStep(6);"></div>
+				<div class="matrix element" id="step7" ng-class="{stepLight: soundSelected[7]!=1, current: stepValue==7, currentSoundSelected: (soundSelected[7]==1 && stepValue!=7)}" ng-click="selectStep(7);"></div>
 			</div>
 			<div class="matrix row">
-				<div class="matrix element" id="step0" ng-class="{current: (stepValue==0 || soundSelected[0]==1)}" ng-click="selectStep(0);"></div>
-				<div class="matrix element" id="step1" ng-class="{current: (stepValue==1 || soundSelected[1]==1)}" ng-click="selectStep(1);"></div>
-				<div class="matrix element" id="step2" ng-class="{current: (stepValue==2 || soundSelected[2]==1)}" ng-click="selectStep(2);"></div>
-				<div class="matrix element" id="step3" ng-class="{current: (stepValue==3 || soundSelected[3]==1)}" ng-click="selectStep(3);"></div>
+				<div class="matrix element" id="step0" ng-class="{stepLight: soundSelected[0]!=1, current: stepValue==0, currentSoundSelected: (soundSelected[0]==1 && stepValue!=0)}" ng-click="selectStep(0);"></div>
+				<div class="matrix element" id="step1" ng-class="{stepLight: soundSelected[1]!=1, current: stepValue==1, currentSoundSelected: (soundSelected[1]==1 && stepValue!=1)}" ng-click="selectStep(1);"></div>
+				<div class="matrix element" id="step2" ng-class="{stepLight: soundSelected[2]!=1, current: stepValue==2, currentSoundSelected: (soundSelected[2]==1  && stepValue!=2)}" ng-click="selectStep(2);"></div>
+				<div class="matrix element" id="step3" ng-class="{stepLight: soundSelected[3]!=1, current: stepValue==3, currentSoundSelected: (soundSelected[3]==1 && stepValue!=3)}" ng-click="selectStep(3);"></div>
 			</div>
 		</div>
 	</div>
