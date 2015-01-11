@@ -12,6 +12,7 @@ machine.controller('MachineController', ['$scope', '$log', 'Sound', 'Sequencer',
 	$scope.drumItems = ['909 drums'];
 	$scope.nVolume = 1.0;
 	$scope.sounds = [];
+	$scope.soundsDummy = [];
 
 	$scope.init = function() {
 
@@ -29,10 +30,15 @@ machine.controller('MachineController', ['$scope', '$log', 'Sound', 'Sequencer',
 		pattern.push(pattern0);
 		$scope.patternSelected = 0;
 		$scope.patternDisabled = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
-		for(var i=0;i<drums.volumes.length;i++){
-			var item = {label: drums.labels[i], volume: drums.volumes[i]};
+		for(var i=0;i<drums.volumes.length;i++) {
+			var item = {label: drums.labels[i], volume: drums.volumes[i], disabled: false};
 			$scope.sounds.push(item);
 		}
+		for(var j=drums.volumes.length;j<16;j++) {
+			var itemDummy = {label: '...', volume: '0.0', disabled: true};
+			$scope.sounds.push(itemDummy);
+		}
+		console.log($scope.sounds);
 	};
 
 	$scope.run = function() {

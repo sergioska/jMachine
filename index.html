@@ -40,9 +40,15 @@
 			<div class="mixer">
 				
 				<div class="vertical-container" ng-repeat="item in sounds track by $index">
-					<div ui-slider="{orientation: 'vertical', range: 'min'}"  min="0.0" max="1.0" step="0.1" use-decimals ng-model="item.volume"></div>
+					<div ui-slider="{orientation: 'vertical', range: 'min', disabled: {{item.disabled}} }"  min="0.0" max="1.0" step="0.1" use-decimals ng-model="item.volume" ></div>
+					<div class="mixerLabel">{{item.label}}</div>		
 				</div>
-				
+				<!--
+				<div class="vertical-container" ng-repeat="item in soundsDummy track by $index">
+					<div ui-slider="{orientation: 'vertical', range: 'min'}"  min="0.0" max="1.0" step="0.1" use-decimals ng-model="item"></div>
+					<div class="mixerLabel">...</div>
+				</div>
+				-->
 				<!--
 				<div class="vertical-container">
 					<div ui-slider="{orientation: 'vertical', range: 'min'}"  min="0" max="10" step="1" ng-model="kick"></div>
@@ -93,7 +99,7 @@
 					<div class="map element disabled"></div>
 				</div>
 				<div class="map row">
-					<div class="map element disabled"></div>
+					<div class="map element" ng-click="play('tom2');select(4);" ng-class="{mapSelected: mapSelected==4}">Tom 2</div>
 					<div class="map element disabled"></div>
 					<div class="map element disabled"></div>
 					<div class="map element disabled"></div>

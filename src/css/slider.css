@@ -1,5 +1,11 @@
 .mixer {
-  margin: 20px;
+  margin-left: 10px;
+  margin-top: 80px;
+}
+.mixerLabel {
+  margin-top: 10px;
+  font-family: verdana;
+  font-size: 10px;
 }
 .vertical-container {
   margin-left: 20px;
