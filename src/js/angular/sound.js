@@ -2,7 +2,7 @@
 machine.factory('Sound', function(){
 	var Sound = (function () {
 	    var df = document.createDocumentFragment();
-	    return function Sound(src) {
+	    return function Sound(src, volume) {
 	    	var allSoundInstance = [];
 	    	for(var i=0;i<allSoundInstance.length;i++){
 	    		if(allSoundInstance[i].source.indexOf(src)){
@@ -12,6 +12,7 @@ machine.factory('Sound', function(){
 	    		}
 	    	}
 	        var snd = new Audio(src);
+	        snd.volume = volume;
 	        var item = {sound: snd, source: src};
 	        allSoundInstance.push(item);
 	        df.appendChild(snd); // keep in fragment until finished playing

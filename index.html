@@ -16,9 +16,11 @@
   	<![endif]-->
 	<link rel="stylesheet" href="dist/css/jmachine.css"/>
 	<script src="dist/js/jquery.min.js"></script>
+	<script src="dist/js/jquery-ui.min.js"></script>
 	<script src="dist/js/angular.min.js"></script>
 	<script src="dist/js/angular-sanitize.min.js"></script>
 	<script src="dist/js/select.min.js"></script>
+	<script src="dist/js/slider.js"></script>
 	<script src="dist/js/jmachine.min.js"></script>
 </head>
 <body>
@@ -26,13 +28,28 @@
 
 	<div class="controls">
 		<div class="display">
+			<div>
 			<label>Select</label>
 			
 			<ui-select ng-model="drumItems.item" theme="select2">
 				<ui-select-match placeholder="Select a soundbank">{{$select.selected}}</ui-select-match>
 				<ui-select-choices repeat="item in drumItems">{{ item }}</ui-select-choices>
 			</ui-select>
-		
+			</div>
+
+			<div class="mixer">
+				
+				<div class="vertical-container" ng-repeat="item in sounds track by $index">
+					<div ui-slider="{orientation: 'vertical', range: 'min'}"  min="0.0" max="1.0" step="0.1" use-decimals ng-model="item.volume"></div>
+				</div>
+				
+				<!--
+				<div class="vertical-container">
+					<div ui-slider="{orientation: 'vertical', range: 'min'}"  min="0" max="10" step="1" ng-model="kick"></div>
+				</div>
+				-->
+			</div>
+
 		</div>
 
 		<div class="resetFloat"></div>

@@ -1,6 +1,7 @@
 Instrument = {
-	volume: 1,
+	volume: 1.0,
 	sounds: null,
+	volumes: null,
 	setVolume: function(volumeValue) {
 		this.volume = volumeValue;
 	},

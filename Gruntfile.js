@@ -30,7 +30,8 @@ module.exports = function(grunt) {
                                             '!src/js/angular/ws.js'],
                     'dist/css/jmachine.css': ['src/css/*.css', 
                                               'bower_components/angular-ui-select/dist/select.min.css',
-                                              'bower_components/select2/select2.css']
+                                              'bower_components/select2/select2.css',
+                                              'bower_components/jquery-ui/themes/smoothness/jquery-ui.css']
                 }
             }
         },
@@ -61,7 +62,31 @@ module.exports = function(grunt) {
     					cwd: 'bower_components/angular-ui-select/dist',
     					src: ['select.min.js'],
     					dest: 'dist/js'
-    				}
+    				},
+                    {
+                        expand: true,
+                        cwd: 'bower_components/angular-ui-slider/src',
+                        src: ['slider.js'],
+                        dest: 'dist/js'
+                    },
+                    {
+                        expand: true,
+                        cwd: 'bower_components/jquery-ui',
+                        src: ['jquery-ui.min.js'],
+                        dest: 'dist/js'
+                    },
+                    {
+                        expand: true,
+                        cwd: 'bower_components/jquery-ui/themes/smoothness/images',
+                        src: ['*.png', '*.gif'],
+                        dest: 'dist/css/images'
+                    },
+                    {
+                        expand: true,
+                        cwd: 'bower_components/select2',
+                        src: ['select2.png'],
+                        dest: 'dist/css'
+                    }
     			]
     		}
 	},
