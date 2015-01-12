@@ -12,7 +12,6 @@ machine.controller('MachineController', ['$scope', '$log', 'Sound', 'Sequencer',
 	$scope.drumItems = ['909 drums'];
 	$scope.nVolume = 1.0;
 	$scope.sounds = [];
-	$scope.soundsDummy = [];
 
 	$scope.init = function() {
 
@@ -38,7 +37,7 @@ machine.controller('MachineController', ['$scope', '$log', 'Sound', 'Sequencer',
 			var itemDummy = {label: '...', volume: '0.0', disabled: true};
 			$scope.sounds.push(itemDummy);
 		}
-		console.log($scope.sounds);
+		//console.log($scope.sounds);
 	};
 
 	$scope.run = function() {
@@ -72,9 +71,10 @@ machine.controller('MachineController', ['$scope', '$log', 'Sound', 'Sequencer',
 		var index = 0;
 		for(var i=0;i<drums.labels.length;i++){
 			if(drums.labels[i]===sound)
-				return i;
+				index = i;
 		}
-		var snd = Sound(drums.play(sound), drums.volumes[i]);
+		console.log("INDEX: " + index);
+		var snd = Sound(drums.play(sound), $scope.sounds[index].volume);
 		snd.play();
 	};
 
@@ -105,7 +105,6 @@ machine.controller('MachineController', ['$scope', '$log', 'Sound', 'Sequencer',
 		$scope.matrix = newpattern.matrix;
 		$scope.select(0);
 		pattern.push(newpattern);
-		console.log(pattern);
 	};
 
 	$scope.$watch('event', function(){
