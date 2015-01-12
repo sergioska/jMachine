@@ -89,16 +89,16 @@
 					<div class="map element disabled"></div>
 				</div>
 				<div class="map row">
-					<div class="map element" ng-click="play('tom2');select(4);" ng-class="{mapSelected: mapSelected==4}">Tom 2</div>
+					<div class="map element" ng-click="play('tom2');select(4);" ng-class="{mapSelected: mapSelected==4, notEmpty: mapSelected!=4}">Tom 2</div>
 					<div class="map element disabled"></div>
 					<div class="map element disabled"></div>
 					<div class="map element disabled"></div>
 				</div>
 				<div class="map row">
-					<div class="map element" ng-click="play('kick');select(0);" ng-class="{mapSelected: mapSelected==0}">Kick</div>
-					<div class="map element" ng-click="play('snare');select(1);" ng-class="{mapSelected: mapSelected==1}">Snare</div>
-					<div class="map element" ng-click="play('hihat');select(2);" ng-class="{mapSelected: mapSelected==2}">Hi Hat</div>
-					<div class="map element" ng-click="play('clap');select(3);" ng-class="{mapSelected: mapSelected==3}">Clap</div>
+					<div class="map element" ng-click="play('kick');select(0);" ng-class="{mapSelected: mapSelected==0, notEmpty: mapSelected!=0}">Kick</div>
+					<div class="map element" ng-click="play('snare');select(1);" ng-class="{mapSelected: mapSelected==1, notEmpty: mapSelected!=1}">Snare</div>
+					<div class="map element" ng-click="play('hihat');select(2);" ng-class="{mapSelected: mapSelected==2, notEmpty: mapSelected!=2}">Hi Hat</div>
+					<div class="map element" ng-click="play('clap');select(3);" ng-class="{mapSelected: mapSelected==3, notEmpty: mapSelected!=3}">Clap</div>
 				</div>
 			</div>
 		</div>
