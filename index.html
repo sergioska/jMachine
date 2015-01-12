@@ -25,8 +25,8 @@
 	<script src="dist/js/jmachine.min.js"></script>
 </head>
 <body>
+    <div style="width: 50px; height: 800px; background-color: brown; float:left;"></div>
 	<div ng-controller="MachineController" ng-init="init();" ng-keyup="event=$event" class="content">
-
 	<div class="controls">
 		<div class="display">
 			<div class="selector">
@@ -39,7 +39,6 @@
             </div>
 
 			<div class="mixer">
-				
 				<div class="vertical-container" ng-repeat="item in sounds track by $index">
 					<div ui-slider="{orientation: 'vertical', range: 'min', disabled: {{item.disabled}} }"  min="0.0" max="1.0" step="0.1" use-decimals ng-model="item.volume"></div>
 					<div class="mixerLabel">{{item.label}}</div>		
