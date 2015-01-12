@@ -86,6 +86,18 @@ module.exports = function(grunt) {
                         cwd: 'bower_components/select2',
                         src: ['select2.png'],
                         dest: 'dist/css'
+                    },
+                    {
+                        expand: true,
+                        cwd: 'bower_components/components-font-awesome/fonts',
+                        src: ['**'],
+                        dest: 'dist/fonts'
+                    },
+                    {
+                        expand: true,
+                        cwd: 'bower_components/components-font-awesome/css',
+                        src: ['font-awesome.min.css'],
+                        dest: 'dist/css'
                     }
     			]
     		}
