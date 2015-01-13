@@ -9,19 +9,24 @@ machine.controller('MachineController', ['$scope', '$log', 'Sound', 'Sequencer',
 	$scope.sync = false;
 	$scope.mapSelected = 0;
 	$scope.matrix = [[]];
-	$scope.drumItems = ['909 drums', '8-bit'];
+	$scope.drumItems = ['909 Dreams', '8-bit'];
 	$scope.nVolume = 1.0;
 	$scope.sounds = [];
-
+    $scope.jsonSounds = {};
+    $scope.bankSelected = Drums64;
+    
 	$scope.init = function() {
-
+        drums = {};
+        var itemDummy = {};
+        var itemSound = {};
+        $scope.sounds = [];
 		var composition = Object.create(Composition);
 
 		composition.setTime(120);
 
-		var jsonSounds = Object.create(Drums64);
-		drums = composition.createInstrument('drums', jsonSounds);
-
+		$scope.jsonSounds = Object.create($scope.bankSelected);
+		drums = composition.createInstrument('drums', $scope.jsonSounds);
+        console.log(drums.volumes.length);
 		$scope.select(0);
 
 		pattern0 = new Pattern();
@@ -30,11 +35,11 @@ machine.controller('MachineController', ['$scope', '$log', 'Sound', 'Sequencer',
 		$scope.patternSelected = 0;
 		$scope.patternDisabled = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
 		for(var i=0;i<drums.volumes.length;i++) {
-			var item = {label: drums.labels[i], volume: drums.volumes[i], disabled: false};
-			$scope.sounds.push(item);
+			itemSound = {label: drums.labels[i], volume: drums.volumes[i], disabled: false};
+			$scope.sounds.push(itemSound);
 		}
 		for(var j=drums.volumes.length;j<16;j++) {
-			var itemDummy = {label: '...', volume: '0.0', disabled: true};
+			itemDummy = {label: '...', volume: '0.0', disabled: true};
 			$scope.sounds.push(itemDummy);
 		}
 		//console.log($scope.sounds);
@@ -132,8 +137,12 @@ machine.controller('MachineController', ['$scope', '$log', 'Sound', 'Sequencer',
 	}, true);
     
     $scope.selectBank = function(item) {
-        alert("OK");
-        console.log(item);
+        var Obj = null;
+        if(item.indexOf('909 Dreams')===0)Obj = Drums64;
+        if(item.indexOf('8-bit')===0)Obj = Bit8;
+        $scope.stop();
+        $scope.bankSelected = Obj;
+        $scope.init();
     };
 
 }]);
