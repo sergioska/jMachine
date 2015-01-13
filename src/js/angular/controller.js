@@ -9,7 +9,7 @@ machine.controller('MachineController', ['$scope', '$log', 'Sound', 'Sequencer',
 	$scope.sync = false;
 	$scope.mapSelected = 0;
 	$scope.matrix = [[]];
-	$scope.drumItems = ['909 drums'];
+	$scope.drumItems = ['909 drums', '8-bit'];
 	$scope.nVolume = 1.0;
 	$scope.sounds = [];
 
@@ -130,5 +130,10 @@ machine.controller('MachineController', ['$scope', '$log', 'Sound', 'Sequencer',
 	$scope.$watch('sounds', function(){
 		sequencer.steps = $scope.updateMatrix();
 	}, true);
+    
+    $scope.selectBank = function(item) {
+        alert("OK");
+        console.log(item);
+    };
 
 }]);

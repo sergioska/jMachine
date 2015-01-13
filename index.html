@@ -34,7 +34,7 @@
 			<div class="selector">
                 <label>Select</label>
 
-                <ui-select ng-model="drumItems.item" theme="select2">
+                <ui-select ng-model="drumItems.selected" theme="select2" on-select="selectBank($item)">
                     <ui-select-match placeholder="Select a soundbank">{{$select.selected}}</ui-select-match>
                     <ui-select-choices repeat="item in drumItems">{{ item }}</ui-select-choices>
                 </ui-select>
@@ -105,6 +105,13 @@
 					</div>
 				</div>
 			</div>
+            
+            <div class="patternAction">
+                <div class="patternAction element">copy</div>
+                <div class="patternAction element">paste</div>
+                <div class="patternAction element">clean</div>
+            </div>
+            
 		</div>
 
 		<div class="playback">
