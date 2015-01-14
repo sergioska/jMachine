@@ -1,6 +1,6 @@
 var machine = angular.module('appMachine', ['ngSanitize','ui.select', 'ui.slider']);
 
-machine.controller('MachineController', ['$scope', '$log', 'Sound', 'Sequencer', function($scope, $log, Sound, sequencer){
+machine.controller('MachineController', ['$scope', 'Sound', 'Sequencer', function($scope, Sound, sequencer){
 
 	var drums = {};
 	var pattern = [];
@@ -14,6 +14,9 @@ machine.controller('MachineController', ['$scope', '$log', 'Sound', 'Sequencer',
 	$scope.sounds = [];
     $scope.jsonSounds = {};
     $scope.bankSelected = Drums64;
+    $scope.animation = false;
+    $scope.isPlaying = false;
+    $scope.isCopying = false;
     
 	$scope.init = function() {
         drums = {};
@@ -28,11 +31,8 @@ machine.controller('MachineController', ['$scope', '$log', 'Sound', 'Sequencer',
 		drums = composition.createInstrument('drums', $scope.jsonSounds);
         console.log(drums.volumes.length);
 		$scope.select(0);
+		$scope.setPattern($scope.patternSelected);
 
-		pattern0 = new Pattern();
-		$scope.matrix = pattern0.matrix;
-		pattern.push(pattern0);
-		$scope.patternSelected = 0;
 		$scope.patternDisabled = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
 		for(var i=0;i<drums.volumes.length;i++) {
 			itemSound = {label: drums.labels[i], volume: drums.volumes[i], disabled: false};
@@ -46,6 +46,7 @@ machine.controller('MachineController', ['$scope', '$log', 'Sound', 'Sequencer',
 	};
 
 	$scope.run = function() {
+		$scope.isPlaying = true;
 		sequencer.steps = $scope.updateMatrix();
 		sequencer.start();
 		$scope.stepValue = sequencer.current;
@@ -69,6 +70,7 @@ machine.controller('MachineController', ['$scope', '$log', 'Sound', 'Sequencer',
 	};
 
 	$scope.stop = function() {
+		$scope.isPlaying = false;
 		sequencer.stop();
 	};
 
@@ -112,6 +114,38 @@ machine.controller('MachineController', ['$scope', '$log', 'Sound', 'Sequencer',
 		pattern.push(newpattern);
 	};
 
+	$scope.copyPattern = function() {
+		$scope.isCopying = true;
+		$scope.animationPattern = true;
+		$scope.animationCopy = true;
+		$scope.animationPaste = false;
+	};
+
+	$scope.pastePattern = function() {
+		console.log($scope.patternSelected);
+		$scope.isCopying = false;
+		$scope.animationPattern = true;
+		$scope.animationCopy = false;
+		$scope.animationPaste = true;
+	};
+
+	$scope.resetPatternAction = function() {
+		$scope.isCopying = false;
+		$scope.animationPattern = false;
+		$scope.animationCopy = false;
+		$scope.animationPaste = false;
+	};
+
+	$scope.selectBank = function(item) {
+        var Obj = null;
+        if(item.indexOf('909 Dreams')===0)Obj = Drums64;
+        if(item.indexOf('8-bit')===0)Obj = Bit8;
+        //$scope.stop();
+        $scope.bankSelected = Obj;
+        sequencer.steps = $scope.updateMatrix();
+        $scope.init();
+    };
+
 	$scope.$watch('event', function(){
 		var snd;
 		if (event.keyCode == 75) { 
@@ -136,13 +170,5 @@ machine.controller('MachineController', ['$scope', '$log', 'Sound', 'Sequencer',
 		sequencer.steps = $scope.updateMatrix();
 	}, true);
     
-    $scope.selectBank = function(item) {
-        var Obj = null;
-        if(item.indexOf('909 Dreams')===0)Obj = Drums64;
-        if(item.indexOf('8-bit')===0)Obj = Bit8;
-        $scope.stop();
-        $scope.bankSelected = Obj;
-        $scope.init();
-    };
 
 }]);

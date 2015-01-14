@@ -98,6 +98,12 @@ module.exports = function(grunt) {
                         cwd: 'bower_components/components-font-awesome/css',
                         src: ['font-awesome.min.css'],
                         dest: 'dist/css'
+                    },
+                    {
+                        expand: true,
+                        cwd: 'bower_components/modernizr',
+                        src: ['modernizr.js'],
+                        dest: 'dist/js'
                     }
     			]
     		}

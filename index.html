@@ -23,6 +23,7 @@
 	<script src="dist/js/select.min.js"></script>
 	<script src="dist/js/slider.js"></script>
 	<script src="dist/js/jmachine.min.js"></script>
+	<script src="dist/js/modernizr.js"></script>
 </head>
 <body>
 	<!--
@@ -31,7 +32,7 @@
 	<div ng-controller="MachineController" ng-init="init();" ng-keyup="event=$event" class="content">
 	<div class="controls">
 		<div class="display">
-			<div class="selector">
+			<div class="selector" ng-cloak>
                 <label>Select</label>
 
                 <ui-select ng-model="drumItems.selected" theme="select2" on-select="selectBank($item)">
@@ -56,67 +57,68 @@
             <div class="map">
 
 				<div class="map row">
-					<div class="map element disabled"></div>
-					<div class="map element disabled"></div>
-					<div class="map element disabled"></div>
-					<div class="map element disabled"></div>
+					<div ng-click="play(sounds[12].label);select(12);" ng-class="{map: true, element: true, disabled: (sounds[12].disabled), mapSelected: mapSelected==12, notEmpty: mapSelected!=12}">{{sounds[12].label}}</div>
+					<div ng-click="play(sounds[13].label);select(13);" ng-class="{map: true, element: true, disabled: (sounds[13].disabled), mapSelected: mapSelected==13, notEmpty: mapSelected!=13}">{{sounds[13].label}}</div>
+					<div ng-click="play(sounds[14].label);select(14);" ng-class="{map: true, element: true, disabled: (sounds[14].disabled), mapSelected: mapSelected==14, notEmpty: mapSelected!=14}">{{sounds[14].label}}</div>
+					<div ng-click="play(sounds[15].label);select(15);" ng-class="{map: true, element: true, disabled: (sounds[15].disabled), mapSelected: mapSelected==15, notEmpty: mapSelected!=15}">{{sounds[15].label}}</div>
 				</div>
 				<div class="map row">
-					<div class="map element disabled"></div>
-					<div class="map element disabled"></div>
-					<div class="map element disabled"></div>
-					<div class="map element disabled"></div>
+					<div ng-click="play(sounds[8].label);select(8);" ng-class="{map: true, element: true, disabled: (sounds[8].disabled), mapSelected: mapSelected==8, notEmpty: mapSelected!=8}">{{sounds[8].label}}</div>
+					<div ng-click="play(sounds[9].label);select(9);" ng-class="{map: true, element: true, disabled: (sounds[9].disabled), mapSelected: mapSelected==9, notEmpty: mapSelected!=9}">{{sounds[9].label}}</div>
+					<div ng-click="play(sounds[10].label);select(10);" ng-class="{map: true, element: true, disabled: (sounds[10].disabled), mapSelected: mapSelected==10, notEmpty: mapSelected!=10}">{{sounds[10].label}}</div>
+					<div ng-click="play(sounds[11].label);select(11);" ng-class="{map: true, element: true, disabled: (sounds[11].disabled), mapSelected: mapSelected==11, notEmpty: mapSelected!=11}">{{sounds[11].label}}</div>
 				</div>
 				<div class="map row">
-					<div class="map element" ng-click="play('tom2');select(4);" ng-class="{mapSelected: mapSelected==4, notEmpty: mapSelected!=4}">Tom 2</div>
-					<div class="map element disabled"></div>
-					<div class="map element disabled"></div>
-					<div class="map element disabled"></div>
+					<div ng-click="play(sounds[4].label);select(4);" ng-class="{map: true, element: true, disabled: (sounds[4].disabled), mapSelected: mapSelected==4, notEmpty: mapSelected!=4}">{{sounds[4].label}}</div>
+					<div ng-click="play(sounds[5].label);select(5);" ng-class="{map: true, element: true, disabled: (sounds[5].disabled), mapSelected: mapSelected==5, notEmpty: mapSelected!=5}">{{sounds[5].label}}</div>
+					<div ng-click="play(sounds[6].label);select(6);" ng-class="{map: true, element: true, disabled: (sounds[6].disabled), mapSelected: mapSelected==6, notEmpty: mapSelected!=6}">{{sounds[6].label}}</div>
+					<div ng-click="play(sounds[7].label);select(7);" ng-class="{map: true, element: true, disabled: (sounds[7].disabled), mapSelected: mapSelected==7, notEmpty: mapSelected!=7}">{{sounds[7].label}}</div>
 				</div>
 				<div class="map row">
-					<div class="map element" ng-click="play('kick');select(0);" ng-class="{mapSelected: mapSelected==0, notEmpty: mapSelected!=0}">Kick</div>
-					<div class="map element" ng-click="play('snare');select(1);" ng-class="{mapSelected: mapSelected==1, notEmpty: mapSelected!=1}">Snare</div>
-					<div class="map element" ng-click="play('hihat');select(2);" ng-class="{mapSelected: mapSelected==2, notEmpty: mapSelected!=2}">Hi Hat</div>
-					<div class="map element" ng-click="play('clap');select(3);" ng-class="{mapSelected: mapSelected==3, notEmpty: mapSelected!=3}">Clap</div>
+					<div ng-click="play(sounds[0].label);select(0);" ng-class="{map: true, element: true, disabled: (sounds[0].disabled), mapSelected: mapSelected==0, notEmpty: mapSelected!=0}">{{sounds[0].label}}</div>
+					<div ng-click="play(sounds[1].label);select(1);" ng-class="{map: true, element: true, disabled: (sounds[1].disabled), mapSelected: mapSelected==1, notEmpty: mapSelected!=1}">{{sounds[1].label}}</div>
+					<div ng-click="play(sounds[2].label);select(2);" ng-class="{map: true, element: true, disabled: (sounds[2].disabled), mapSelected: mapSelected==2, notEmpty: mapSelected!=2}">{{sounds[2].label}}</div>
+					<div ng-click="play(sounds[3].label);select(3);" ng-class="{map: true, element: true, disabled: (sounds[3].disabled), mapSelected: mapSelected==3, notEmpty: mapSelected!=3}">{{sounds[3].label}}</div>
 				</div>
 			</div>
             
 			<div class="patternSpace">
 				<div class="pattern">
 					<div class="pattern row">
-						<div class="pattern element" ng-click="setPattern(0)" ng-class="{patternSelected: patternSelected==0, patternDisabled: patternDisabled[0]==1}">0</div>
-						<div class="pattern element" ng-click="setPattern(1)" ng-class="{patternSelected: patternSelected==1, patternDisabled: patternDisabled[1]==1}">1</div>
-						<div class="pattern element" ng-click="setPattern(2)" ng-class="{patternSelected: patternSelected==2, patternDisabled: patternDisabled[2]==1}">2</div>
+						<div class="pattern element" ng-click="setPattern(0)" ng-class="{patternSelected: patternSelected==0, patternDisabled: patternDisabled[0]==1, animatePattern: animationPattern}">0</div>
+						<div class="pattern element" ng-click="setPattern(1)" ng-class="{patternSelected: patternSelected==1, patternDisabled: patternDisabled[1]==1, animatePattern: animationPattern}">1</div>
+						<div class="pattern element" ng-click="setPattern(2)" ng-class="{patternSelected: patternSelected==2, patternDisabled: patternDisabled[2]==1, animatePattern: animationPattern}">2</div>
 					</div>
 					<div class="pattern row">
-						<div class="pattern element" ng-click="setPattern(3)" ng-class="{patternSelected: patternSelected==3, patternDisabled: patternDisabled[3]==1}">3</div>
-						<div class="pattern element" ng-click="setPattern(4)" ng-class="{patternSelected: patternSelected==4, patternDisabled: patternDisabled[4]==1}">4</div>
-						<div class="pattern element" ng-click="setPattern(5)" ng-class="{patternSelected: patternSelected==5, patternDisabled: patternDisabled[5]==1}">5</div>
+						<div class="pattern element" ng-click="setPattern(3)" ng-class="{patternSelected: patternSelected==3, patternDisabled: patternDisabled[3]==1, animatePattern: animationPattern}">3</div>
+						<div class="pattern element" ng-click="setPattern(4)" ng-class="{patternSelected: patternSelected==4, patternDisabled: patternDisabled[4]==1, animatePattern: animationPattern}">4</div>
+						<div class="pattern element" ng-click="setPattern(5)" ng-class="{patternSelected: patternSelected==5, patternDisabled: patternDisabled[5]==1, animatePattern: animationPattern}">5</div>
 					</div>
 					<div class="pattern row">
-						<div class="pattern element" ng-click="setPattern(6)" ng-class="{patternSelected: patternSelected==6, patternDisabled: patternDisabled[6]==1}">6</div>
-						<div class="pattern element" ng-click="setPattern(7)" ng-class="{patternSelected: patternSelected==7, patternDisabled: patternDisabled[7]==1}">7</div>
-						<div class="pattern element" ng-click="setPattern(8)" ng-class="{patternSelected: patternSelected==8, patternDisabled: patternDisabled[8]==1}">8</div>
+						<div class="pattern element" ng-click="setPattern(6)" ng-class="{patternSelected: patternSelected==6, patternDisabled: patternDisabled[6]==1, animatePattern: animationPattern}">6</div>
+						<div class="pattern element" ng-click="setPattern(7)" ng-class="{patternSelected: patternSelected==7, patternDisabled: patternDisabled[7]==1, animatePattern: animationPattern}">7</div>
+						<div class="pattern element" ng-click="setPattern(8)" ng-class="{patternSelected: patternSelected==8, patternDisabled: patternDisabled[8]==1, animatePattern: animationPattern}">8</div>
 					</div>
 					<div class="pattern row">
-						<div class="pattern element" ng-click="setPattern(9)" ng-class="{patternSelected: patternSelected==9, patternDisabled: patternDisabled[9]==1}">9</div>
-						<div class="pattern element" ng-click="setPattern(10)" ng-class="{patternSelected: patternSelected==10, patternDisabled: patternDisabled[10]==1}">10</div>
-						<div class="pattern element" ng-click="setPattern(11)" ng-class="{patternSelected: patternSelected==11, patternDisabled: patternDisabled[11]==1}">11</div>
+						<div class="pattern element" ng-click="setPattern(9)" ng-class="{patternSelected: patternSelected==9, patternDisabled: patternDisabled[9]==1, animatePattern: animationPattern}">9</div>
+						<div class="pattern element" ng-click="setPattern(10)" ng-class="{patternSelected: patternSelected==10, patternDisabled: patternDisabled[10]==1, animatePattern: animationPattern}">10</div>
+						<div class="pattern element" ng-click="setPattern(11)" ng-class="{patternSelected: patternSelected==11, patternDisabled: patternDisabled[11]==1, animatePattern: animationPattern}">11</div>
 					</div>
 				</div>
 			</div>
             
             <div class="patternAction">
-                <div class="patternAction element">copy</div>
-                <div class="patternAction element">paste</div>
+                <div class="patternAction element" ng-click="copyPattern();" ng-class="{animateAction: animationCopy}">copy</div>
+                <div class="patternAction element" ng-click="pastePattern();" ng-class="{animateAction: animationPaste}">paste</div>
                 <div class="patternAction element">clean</div>
+                <div class="patternAction element" ng-click="resetPatternAction()">esc</div>
             </div>
             
 		</div>
 
 		<div class="playback">
 			<div class="playback row">
-				<div class="playback element play" ng-click="run();">Play<br/><i class="fa fa-play"></i></div>
+				<div class="playback element play" ng-click="run();" ng-class="{run: isPlaying}">Play<br/><i class="fa fa-play"></i></div>
                 <div class="playback element stop" ng-click="stop();">Pause<br/><i class="fa fa-pause"></i></div>
 				<div>
 					<div class="playback stepCounter"> {{ stepValue }} </div>
