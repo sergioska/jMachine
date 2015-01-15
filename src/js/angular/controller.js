@@ -16,7 +16,14 @@ machine.controller('MachineController', ['$scope', 'Sound', 'Sequencer', functio
     $scope.bankSelected = Drums64;
     $scope.playLabel = 'Play';
     $scope.animation = false;
+    // enable/disable animation on pause button 
     $scope.animationPause = false;
+    // enable/disable css animation about copy button
+    $scope. animationCopy = false;
+    // enable/disable css animation about paste button
+    $scope.animationPaste = false;
+    // 1/0 to enable/disable css animation about pattern button
+    $scope.animationPattern = [];
     $scope.isPlaying = false;
     $scope.isCopying = false;
     $scope.isPasting = false;
@@ -86,7 +93,7 @@ machine.controller('MachineController', ['$scope', 'Sound', 'Sequencer', functio
 
 	$scope.pause = function() {
 		sequencer.pause();
-		$scope.playLabel = 'pause';
+		$scope.playLabel = 'Pause';
 		$scope.animationPause = true;
 		$scope.isPlaying = false;
 	};
@@ -114,28 +121,37 @@ machine.controller('MachineController', ['$scope', 'Sound', 'Sequencer', functio
 	};
 
 	$scope.setPattern = function(nPattern) {
+        // copy mode
 		if($scope.isCopying) {
 			$scope.copyClipboard = nPattern;
 		}
+        // paste mode
 		if($scope.isPasting) {
-			//console.log("SELECTED: " + nPattern + "CLIPBOARD: " + $scope.copyClipboard);
-			if(pattern[nPattern])
-				pattern[nPattern].matrix=pattern[$scope.copyClipboard].matrix;
-			else {
-				var tmppattern = new Pattern();
-				tmppattern.number = nPattern;
-				$scope.matrix = tmppattern.matrix;
-				pattern.push(tmppattern);
-				//pattern[nPattern]=pattern[$scope.copyClipboard];
-			}
+            for(var i=0;i<pattern.length;i++){
+                if(pattern[i].number===nPattern){
+                    pattern[i].matrix=pattern[$scope.copyClipboard].matrix;
+                    return;
+                }
+            }
+			var tmppattern = new Pattern();
+            tmppattern.number = nPattern;
+            var index = 0;
+            for(var k=0;k<pattern.length;k++){
+                if(pattern[k].number===$scope.copyClipboard)
+                    index=pattern[k].number;
+            }
+            $scope.matrix = pattern[index].matrix;
+            tmppattern.matrix = $scope.matrix;
+            pattern.push(tmppattern);
+			
 			$scope.copyClipboard = 0;
 			$scope.resetPatternAction();
 			return;
 		}
 		$scope.patternSelected = nPattern;
-		for(var i=0;i<pattern.length;i++) {
-			if(pattern[i].number===nPattern) {
-				$scope.matrix = pattern[i].matrix;
+		for(var j=0;j<pattern.length;j++) {
+			if(pattern[j].number===nPattern) {
+				$scope.matrix = pattern[j].matrix;
 				$scope.select(0);
 				return;
 			}
@@ -144,23 +160,26 @@ machine.controller('MachineController', ['$scope', 'Sound', 'Sequencer', functio
 		var newpattern = new Pattern();
 		newpattern.number = nPattern;
 		$scope.matrix = newpattern.matrix;
-		$scope.select(0);
-		pattern.push(newpattern);
+        $scope.select(0);
+        pattern.push(newpattern);
 	};
 
 	$scope.copyPattern = function() {
+        for(var i=0;i<pattern.length;i++){
+            $scope.animationPattern[pattern[i].number]=1;
+        }
 		$scope.isCopying = true;
 		$scope.isPasting = false;
-		$scope.animationPattern = true;
+		//$scope.animationPattern = true;
 		$scope.animationCopy = true;
 		$scope.animationPaste = false;
 	};
 
 	$scope.pastePattern = function() {
-		//pattern[$scope.patternSelected];
 		$scope.isPasting = true;
 		$scope.isCopying = false;
-		$scope.animationPattern = true;
+        for(var i=0;i<12;i++)
+		  $scope.animationPattern[i]=1;
 		$scope.animationCopy = false;
 		$scope.animationPaste = true;
 	};
@@ -169,7 +188,7 @@ machine.controller('MachineController', ['$scope', 'Sound', 'Sequencer', functio
 		$scope.isCopying = false;
 		$scope.isPasting = false;
 		$scope.copyClipboard = 0;
-		$scope.animationPattern = false;
+		$scope.animationPattern = [];
 		$scope.animationCopy = false;
 		$scope.animationPaste = false;
 	};
@@ -178,7 +197,6 @@ machine.controller('MachineController', ['$scope', 'Sound', 'Sequencer', functio
         var Obj = null;
         if(item.indexOf('909 Dreams')===0)Obj = Drums64;
         if(item.indexOf('8-bit')===0)Obj = Bit8;
-        //$scope.stop();
         $scope.bankSelected = Obj;
         sequencer.steps = $scope.updateMatrix();
         $scope.init();
