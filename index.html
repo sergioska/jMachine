@@ -32,17 +32,17 @@
 	<div ng-controller="MachineController" ng-init="init();" ng-keyup="event=$event" class="content">
 	<div class="controls">
 		<div class="display">
-			<div class="selector" ng-cloak>
+			<div class="selector">
                 <label>Select</label>
 
-                <ui-select ng-model="drumItems.selected" theme="select2" on-select="selectBank($item)">
+                <ui-select ng-model="drumItems.selected" theme="select2" on-select="selectBank($item)"  ng-cloak>
                     <ui-select-match placeholder="Select a soundbank">{{$select.selected}}</ui-select-match>
                     <ui-select-choices repeat="item in drumItems">{{ item }}</ui-select-choices>
                 </ui-select>
             </div>
 
 			<div class="mixer">
-				<div class="vertical-container" ng-repeat="item in sounds track by $index">
+				<div class="vertical-container" ng-repeat="item in sounds track by $index"  ng-cloak>
 					<div ui-slider="{orientation: 'vertical', range: 'min', disabled: {{item.disabled}} }"  min="0.0" max="1.0" step="0.1" use-decimals ng-model="item.volume"></div>
 					<div class="mixerLabel">{{item.label}}</div>		
 				</div>
@@ -57,28 +57,28 @@
             <div class="map">
 
 				<div class="map row">
-					<div ng-click="play(sounds[12].label);select(12);" ng-class="{map: true, element: true, disabled: (sounds[12].disabled), mapSelected: mapSelected==12, notEmpty: mapSelected!=12}">{{sounds[12].label}}</div>
-					<div ng-click="play(sounds[13].label);select(13);" ng-class="{map: true, element: true, disabled: (sounds[13].disabled), mapSelected: mapSelected==13, notEmpty: mapSelected!=13}">{{sounds[13].label}}</div>
-					<div ng-click="play(sounds[14].label);select(14);" ng-class="{map: true, element: true, disabled: (sounds[14].disabled), mapSelected: mapSelected==14, notEmpty: mapSelected!=14}">{{sounds[14].label}}</div>
-					<div ng-click="play(sounds[15].label);select(15);" ng-class="{map: true, element: true, disabled: (sounds[15].disabled), mapSelected: mapSelected==15, notEmpty: mapSelected!=15}">{{sounds[15].label}}</div>
+					<div ng-click="play(sounds[12].label);select(12);" ng-class="{map: true, element: true, disabled: (sounds[12].disabled), mapSelected: mapSelected==12, notEmpty: mapSelected!=12}" ng-cloak>{{sounds[12].label}}</div>
+					<div ng-click="play(sounds[13].label);select(13);" ng-class="{map: true, element: true, disabled: (sounds[13].disabled), mapSelected: mapSelected==13, notEmpty: mapSelected!=13}" ng-cloak>{{sounds[13].label}}</div>
+					<div ng-click="play(sounds[14].label);select(14);" ng-class="{map: true, element: true, disabled: (sounds[14].disabled), mapSelected: mapSelected==14, notEmpty: mapSelected!=14}" ng-cloak>{{sounds[14].label}}</div>
+					<div ng-click="play(sounds[15].label);select(15);" ng-class="{map: true, element: true, disabled: (sounds[15].disabled), mapSelected: mapSelected==15, notEmpty: mapSelected!=15}" ng-cloak>{{sounds[15].label}}</div>
 				</div>
 				<div class="map row">
-					<div ng-click="play(sounds[8].label);select(8);" ng-class="{map: true, element: true, disabled: (sounds[8].disabled), mapSelected: mapSelected==8, notEmpty: mapSelected!=8}">{{sounds[8].label}}</div>
-					<div ng-click="play(sounds[9].label);select(9);" ng-class="{map: true, element: true, disabled: (sounds[9].disabled), mapSelected: mapSelected==9, notEmpty: mapSelected!=9}">{{sounds[9].label}}</div>
-					<div ng-click="play(sounds[10].label);select(10);" ng-class="{map: true, element: true, disabled: (sounds[10].disabled), mapSelected: mapSelected==10, notEmpty: mapSelected!=10}">{{sounds[10].label}}</div>
-					<div ng-click="play(sounds[11].label);select(11);" ng-class="{map: true, element: true, disabled: (sounds[11].disabled), mapSelected: mapSelected==11, notEmpty: mapSelected!=11}">{{sounds[11].label}}</div>
+					<div ng-click="play(sounds[8].label);select(8);" ng-class="{map: true, element: true, disabled: (sounds[8].disabled), mapSelected: mapSelected==8, notEmpty: mapSelected!=8}" ng-cloak>{{sounds[8].label}}</div>
+					<div ng-click="play(sounds[9].label);select(9);" ng-class="{map: true, element: true, disabled: (sounds[9].disabled), mapSelected: mapSelected==9, notEmpty: mapSelected!=9}" ng-cloak>{{sounds[9].label}}</div>
+					<div ng-click="play(sounds[10].label);select(10);" ng-class="{map: true, element: true, disabled: (sounds[10].disabled), mapSelected: mapSelected==10, notEmpty: mapSelected!=10}" ng-cloak>{{sounds[10].label}}</div>
+					<div ng-click="play(sounds[11].label);select(11);" ng-class="{map: true, element: true, disabled: (sounds[11].disabled), mapSelected: mapSelected==11, notEmpty: mapSelected!=11}" ng-cloak>{{sounds[11].label}}</div>
 				</div>
 				<div class="map row">
-					<div ng-click="play(sounds[4].label);select(4);" ng-class="{map: true, element: true, disabled: (sounds[4].disabled), mapSelected: mapSelected==4, notEmpty: mapSelected!=4}">{{sounds[4].label}}</div>
-					<div ng-click="play(sounds[5].label);select(5);" ng-class="{map: true, element: true, disabled: (sounds[5].disabled), mapSelected: mapSelected==5, notEmpty: mapSelected!=5}">{{sounds[5].label}}</div>
-					<div ng-click="play(sounds[6].label);select(6);" ng-class="{map: true, element: true, disabled: (sounds[6].disabled), mapSelected: mapSelected==6, notEmpty: mapSelected!=6}">{{sounds[6].label}}</div>
-					<div ng-click="play(sounds[7].label);select(7);" ng-class="{map: true, element: true, disabled: (sounds[7].disabled), mapSelected: mapSelected==7, notEmpty: mapSelected!=7}">{{sounds[7].label}}</div>
+					<div ng-click="play(sounds[4].label);select(4);" ng-class="{map: true, element: true, disabled: (sounds[4].disabled), mapSelected: mapSelected==4, notEmpty: mapSelected!=4}" ng-cloak>{{sounds[4].label}}</div>
+					<div ng-click="play(sounds[5].label);select(5);" ng-class="{map: true, element: true, disabled: (sounds[5].disabled), mapSelected: mapSelected==5, notEmpty: mapSelected!=5}" ng-cloak>{{sounds[5].label}}</div>
+					<div ng-click="play(sounds[6].label);select(6);" ng-class="{map: true, element: true, disabled: (sounds[6].disabled), mapSelected: mapSelected==6, notEmpty: mapSelected!=6}" ng-cloak>{{sounds[6].label}}</div>
+					<div ng-click="play(sounds[7].label);select(7);" ng-class="{map: true, element: true, disabled: (sounds[7].disabled), mapSelected: mapSelected==7, notEmpty: mapSelected!=7}" ng-cloak>{{sounds[7].label}}</div>
 				</div>
 				<div class="map row">
-					<div ng-click="play(sounds[0].label);select(0);" ng-class="{map: true, element: true, disabled: (sounds[0].disabled), mapSelected: mapSelected==0, notEmpty: mapSelected!=0}">{{sounds[0].label}}</div>
-					<div ng-click="play(sounds[1].label);select(1);" ng-class="{map: true, element: true, disabled: (sounds[1].disabled), mapSelected: mapSelected==1, notEmpty: mapSelected!=1}">{{sounds[1].label}}</div>
-					<div ng-click="play(sounds[2].label);select(2);" ng-class="{map: true, element: true, disabled: (sounds[2].disabled), mapSelected: mapSelected==2, notEmpty: mapSelected!=2}">{{sounds[2].label}}</div>
-					<div ng-click="play(sounds[3].label);select(3);" ng-class="{map: true, element: true, disabled: (sounds[3].disabled), mapSelected: mapSelected==3, notEmpty: mapSelected!=3}">{{sounds[3].label}}</div>
+					<div ng-click="play(sounds[0].label);select(0);" ng-class="{map: true, element: true, disabled: (sounds[0].disabled), mapSelected: mapSelected==0, notEmpty: mapSelected!=0}" ng-cloak>{{sounds[0].label}}</div>
+					<div ng-click="play(sounds[1].label);select(1);" ng-class="{map: true, element: true, disabled: (sounds[1].disabled), mapSelected: mapSelected==1, notEmpty: mapSelected!=1}" ng-cloak>{{sounds[1].label}}</div>
+					<div ng-click="play(sounds[2].label);select(2);" ng-class="{map: true, element: true, disabled: (sounds[2].disabled), mapSelected: mapSelected==2, notEmpty: mapSelected!=2}" ng-cloak>{{sounds[2].label}}</div>
+					<div ng-click="play(sounds[3].label);select(3);" ng-class="{map: true, element: true, disabled: (sounds[3].disabled), mapSelected: mapSelected==3, notEmpty: mapSelected!=3}" ng-cloak>{{sounds[3].label}}</div>
 				</div>
 			</div>
             
@@ -118,40 +118,47 @@
 
 		<div class="playback">
 			<div class="playback row">
-				<div class="playback element play" ng-click="run();" ng-class="{run: isPlaying}">Play<br/><i class="fa fa-play"></i></div>
-                <div class="playback element stop" ng-click="stop();">Pause<br/><i class="fa fa-pause"></i></div>
+				<div class="playback element play" ng-click="run();" ng-class="{run: isPlaying, animatePause: animationPause}"><span ng-bind="playLabel"></span><br/><i class="fa fa-{{playLabel}}"></i></div>
+                <div class="playback element stop" ng-click="stop();">Stop<br/><i class="fa fa-stop"></i></div>
 				<div>
 					<div class="playback stepCounter"> {{ stepValue }} </div>
-					<div class="playback sync"><input type="checkbox" ng-model="sync"/> sync </div>
 				</div>
 			</div>
 		</div>
+
+		<div class="timeControl">
+			<div class="horizontal-container" ng-cloak>
+					<div ui-slider min="60" max="150" step="1" ng-model="bpm"></div>
+					<div class="timeLabel">{{bpm}} bpm</div>		
+			</div>
+		</div>
+
 	</div>
 
 		<div class="matrix" id="matrix">
 			<div class="matrix row">
-				<div class="matrix element" id="step12" ng-class="{stepLight: soundSelected[12]!=1, current: stepValue==12, currentSoundSelected: (soundSelected[12]==1 && stepValue!=12)}" ng-click="selectStep(12);"></div>
-				<div class="matrix element" id="step13" ng-class="{stepLight: soundSelected[13]!=1, current: stepValue==13, currentSoundSelected: (soundSelected[13]==1 && stepValue!=13)}" ng-click="selectStep(13);"></div>
-				<div class="matrix element" id="step14" ng-class="{stepLight: soundSelected[14]!=1, current: stepValue==14, currentSoundSelected: (soundSelected[14]==1 && stepValue!=14)}" ng-click="selectStep(14);"></div>
-				<div class="matrix element" id="step15" ng-class="{stepLight: soundSelected[15]!=1, current: stepValue==15, currentSoundSelected: (soundSelected[15]==1 && stepValue!=15)}" ng-click="selectStep(15);"></div>
+				<div class="matrix element" id="step12" ng-class="{stepLight: soundSelected[12]!=1, current: stepValue==12, currentSoundSelected: (soundSelected[12]==1 && stepValue!=12)}" ng-click="selectStep(12);" ng-cloak></div>
+				<div class="matrix element" id="step13" ng-class="{stepLight: soundSelected[13]!=1, current: stepValue==13, currentSoundSelected: (soundSelected[13]==1 && stepValue!=13)}" ng-click="selectStep(13);" ng-cloak></div>
+				<div class="matrix element" id="step14" ng-class="{stepLight: soundSelected[14]!=1, current: stepValue==14, currentSoundSelected: (soundSelected[14]==1 && stepValue!=14)}" ng-click="selectStep(14);" ng-cloak></div>
+				<div class="matrix element" id="step15" ng-class="{stepLight: soundSelected[15]!=1, current: stepValue==15, currentSoundSelected: (soundSelected[15]==1 && stepValue!=15)}" ng-click="selectStep(15);" ng-cloak></div>
 			</div>
 			<div class="matrix row">
-				<div class="matrix element" id="step8" ng-class="{stepLight: soundSelected[8]!=1, current: stepValue==8, currentSoundSelected: (soundSelected[8]==1 && stepValue!=8)}" ng-click="selectStep(8);"></div>
-				<div class="matrix element" id="step9" ng-class="{stepLight: soundSelected[9]!=1, current: stepValue==9, currentSoundSelected: (soundSelected[9]==1 && stepValue!=9)}" ng-click="selectStep(9);"></div>
-				<div class="matrix element" id="step10" ng-class="{stepLight: soundSelected[10]!=1, current: stepValue==10, currentSoundSelected: (soundSelected[10]==1 && stepValue!=10)}"ng-click="selectStep(10);"></div>
-				<div class="matrix element" id="step11" ng-class="{stepLight: soundSelected[11]!=1, current: stepValue==11, currentSoundSelected: (soundSelected[11]==1 && stepValue!=11)}" ng-click="selectStep(11);"></div>
+				<div class="matrix element" id="step8" ng-class="{stepLight: soundSelected[8]!=1, current: stepValue==8, currentSoundSelected: (soundSelected[8]==1 && stepValue!=8)}" ng-click="selectStep(8);" ng-cloak></div>
+				<div class="matrix element" id="step9" ng-class="{stepLight: soundSelected[9]!=1, current: stepValue==9, currentSoundSelected: (soundSelected[9]==1 && stepValue!=9)}" ng-click="selectStep(9);" ng-cloak></div>
+				<div class="matrix element" id="step10" ng-class="{stepLight: soundSelected[10]!=1, current: stepValue==10, currentSoundSelected: (soundSelected[10]==1 && stepValue!=10)}"ng-click="selectStep(10);" ng-cloak></div>
+				<div class="matrix element" id="step11" ng-class="{stepLight: soundSelected[11]!=1, current: stepValue==11, currentSoundSelected: (soundSelected[11]==1 && stepValue!=11)}" ng-click="selectStep(11);" ng-cloak></div>
 			</div>
 			<div class="matrix row">
-				<div class="matrix element" id="step4" ng-class="{stepLight: soundSelected[4]!=1, current: stepValue==4, currentSoundSelected: (soundSelected[4]==1 && stepValue!=4)}" ng-click="selectStep(4);"></div>
-				<div class="matrix element" id="step5" ng-class="{stepLight: soundSelected[5]!=1, current: stepValue==5, currentSoundSelected: (soundSelected[5]==1 && stepValue!=5)}" ng-click="selectStep(5);"></div>
-				<div class="matrix element" id="step6" ng-class="{stepLight: soundSelected[6]!=1, current: stepValue==6, currentSoundSelected: (soundSelected[6]==1 && stepValue!=6)}" ng-click="selectStep(6);"></div>
-				<div class="matrix element" id="step7" ng-class="{stepLight: soundSelected[7]!=1, current: stepValue==7, currentSoundSelected: (soundSelected[7]==1 && stepValue!=7)}" ng-click="selectStep(7);"></div>
+				<div class="matrix element" id="step4" ng-class="{stepLight: soundSelected[4]!=1, current: stepValue==4, currentSoundSelected: (soundSelected[4]==1 && stepValue!=4)}" ng-click="selectStep(4);" ng-cloak></div>
+				<div class="matrix element" id="step5" ng-class="{stepLight: soundSelected[5]!=1, current: stepValue==5, currentSoundSelected: (soundSelected[5]==1 && stepValue!=5)}" ng-click="selectStep(5);" ng-cloak></div>
+				<div class="matrix element" id="step6" ng-class="{stepLight: soundSelected[6]!=1, current: stepValue==6, currentSoundSelected: (soundSelected[6]==1 && stepValue!=6)}" ng-click="selectStep(6);" ng-cloak></div>
+				<div class="matrix element" id="step7" ng-class="{stepLight: soundSelected[7]!=1, current: stepValue==7, currentSoundSelected: (soundSelected[7]==1 && stepValue!=7)}" ng-click="selectStep(7);" ng-cloak></div>
 			</div>
 			<div class="matrix row">
-				<div class="matrix element" id="step0" ng-class="{stepLight: soundSelected[0]!=1, current: stepValue==0, currentSoundSelected: (soundSelected[0]==1 && stepValue!=0)}" ng-click="selectStep(0);"></div>
-				<div class="matrix element" id="step1" ng-class="{stepLight: soundSelected[1]!=1, current: stepValue==1, currentSoundSelected: (soundSelected[1]==1 && stepValue!=1)}" ng-click="selectStep(1);"></div>
-				<div class="matrix element" id="step2" ng-class="{stepLight: soundSelected[2]!=1, current: stepValue==2, currentSoundSelected: (soundSelected[2]==1  && stepValue!=2)}" ng-click="selectStep(2);"></div>
-				<div class="matrix element" id="step3" ng-class="{stepLight: soundSelected[3]!=1, current: stepValue==3, currentSoundSelected: (soundSelected[3]==1 && stepValue!=3)}" ng-click="selectStep(3);"></div>
+				<div class="matrix element" id="step0" ng-class="{stepLight: soundSelected[0]!=1, current: stepValue==0, currentSoundSelected: (soundSelected[0]==1 && stepValue!=0)}" ng-click="selectStep(0);" ng-cloak></div>
+				<div class="matrix element" id="step1" ng-class="{stepLight: soundSelected[1]!=1, current: stepValue==1, currentSoundSelected: (soundSelected[1]==1 && stepValue!=1)}" ng-click="selectStep(1);" ng-cloak></div>
+				<div class="matrix element" id="step2" ng-class="{stepLight: soundSelected[2]!=1, current: stepValue==2, currentSoundSelected: (soundSelected[2]==1  && stepValue!=2)}" ng-click="selectStep(2);" ng-cloak></div>
+				<div class="matrix element" id="step3" ng-class="{stepLight: soundSelected[3]!=1, current: stepValue==3, currentSoundSelected: (soundSelected[3]==1 && stepValue!=3)}" ng-click="selectStep(3);" ng-cloak></div>
 			</div>
 		</div>
 	</div>

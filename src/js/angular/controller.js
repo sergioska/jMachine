@@ -14,9 +14,14 @@ machine.controller('MachineController', ['$scope', 'Sound', 'Sequencer', functio
 	$scope.sounds = [];
     $scope.jsonSounds = {};
     $scope.bankSelected = Drums64;
+    $scope.playLabel = 'Play';
     $scope.animation = false;
+    $scope.animationPause = false;
     $scope.isPlaying = false;
     $scope.isCopying = false;
+    $scope.isPasting = false;
+    $scope.copyClipboard = 0;
+    $scope.bpm = 90;
     
 	$scope.init = function() {
         drums = {};
@@ -25,7 +30,7 @@ machine.controller('MachineController', ['$scope', 'Sound', 'Sequencer', functio
         $scope.sounds = [];
 		var composition = Object.create(Composition);
 
-		composition.setTime(120);
+		composition.setTime($scope.bpm);
 
 		$scope.jsonSounds = Object.create($scope.bankSelected);
 		drums = composition.createInstrument('drums', $scope.jsonSounds);
@@ -46,7 +51,12 @@ machine.controller('MachineController', ['$scope', 'Sound', 'Sequencer', functio
 	};
 
 	$scope.run = function() {
+		$scope.animationPause = false;
+		if($scope.isPlaying)
+			return $scope.pause();
+		$scope.playLabel = 'Play';
 		$scope.isPlaying = true;
+		sequencer.setTime($scope.bpm);
 		sequencer.steps = $scope.updateMatrix();
 		sequencer.start();
 		$scope.stepValue = sequencer.current;
@@ -74,13 +84,19 @@ machine.controller('MachineController', ['$scope', 'Sound', 'Sequencer', functio
 		sequencer.stop();
 	};
 
+	$scope.pause = function() {
+		sequencer.pause();
+		$scope.playLabel = 'pause';
+		$scope.animationPause = true;
+		$scope.isPlaying = false;
+	};
+
 	$scope.play = function(sound) {
 		var index = 0;
 		for(var i=0;i<drums.labels.length;i++){
 			if(drums.labels[i]===sound)
 				index = i;
 		}
-		console.log("INDEX: " + index);
 		var snd = Sound(drums.play(sound), $scope.sounds[index].volume);
 		snd.play();
 	};
@@ -98,6 +114,24 @@ machine.controller('MachineController', ['$scope', 'Sound', 'Sequencer', functio
 	};
 
 	$scope.setPattern = function(nPattern) {
+		if($scope.isCopying) {
+			$scope.copyClipboard = nPattern;
+		}
+		if($scope.isPasting) {
+			//console.log("SELECTED: " + nPattern + "CLIPBOARD: " + $scope.copyClipboard);
+			if(pattern[nPattern])
+				pattern[nPattern].matrix=pattern[$scope.copyClipboard].matrix;
+			else {
+				var tmppattern = new Pattern();
+				tmppattern.number = nPattern;
+				$scope.matrix = tmppattern.matrix;
+				pattern.push(tmppattern);
+				//pattern[nPattern]=pattern[$scope.copyClipboard];
+			}
+			$scope.copyClipboard = 0;
+			$scope.resetPatternAction();
+			return;
+		}
 		$scope.patternSelected = nPattern;
 		for(var i=0;i<pattern.length;i++) {
 			if(pattern[i].number===nPattern) {
@@ -116,13 +150,15 @@ machine.controller('MachineController', ['$scope', 'Sound', 'Sequencer', functio
 
 	$scope.copyPattern = function() {
 		$scope.isCopying = true;
+		$scope.isPasting = false;
 		$scope.animationPattern = true;
 		$scope.animationCopy = true;
 		$scope.animationPaste = false;
 	};
 
 	$scope.pastePattern = function() {
-		console.log($scope.patternSelected);
+		//pattern[$scope.patternSelected];
+		$scope.isPasting = true;
 		$scope.isCopying = false;
 		$scope.animationPattern = true;
 		$scope.animationCopy = false;
@@ -131,6 +167,8 @@ machine.controller('MachineController', ['$scope', 'Sound', 'Sequencer', functio
 
 	$scope.resetPatternAction = function() {
 		$scope.isCopying = false;
+		$scope.isPasting = false;
+		$scope.copyClipboard = 0;
 		$scope.animationPattern = false;
 		$scope.animationCopy = false;
 		$scope.animationPaste = false;
@@ -169,6 +207,17 @@ machine.controller('MachineController', ['$scope', 'Sound', 'Sequencer', functio
 	$scope.$watch('sounds', function(){
 		sequencer.steps = $scope.updateMatrix();
 	}, true);
+
+	$scope.$watch('bpm', function(){
+		sequencer.setTime($scope.bpm);
+		console.log($scope.isPlaying);
+		if($scope.isPlaying) {
+			sequencer.resetInterval();
+			sequencer.loop(function(output){
+				$scope.stepValue = output;
+			});
+		}
+	});
     
 
 }]);

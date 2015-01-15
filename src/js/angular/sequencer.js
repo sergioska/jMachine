@@ -5,9 +5,12 @@ machine.factory('Sequencer', ['$interval', function($interval) {
 		current: 0,
 		isRun: false,
 		interval: null,
+		time: 0,
+		setTime: function(bpm) {
+			Sequencer.time = Math.round((60000/bpm)/4);
+		},
 		start: function() {
 			Sequencer.isRun = true;
-			Sequencer.current = 0;
 		},
 		stop: function() {
 			Sequencer.current = 0;
@@ -19,8 +22,10 @@ machine.factory('Sequencer', ['$interval', function($interval) {
 			Sequencer.isRun = false;
 			$interval.cancel(Sequencer.interval);
 		},
+		resetInterval: function() {
+			$interval.cancel(Sequencer.interval);
+		},
 		next: function(callback) {
-			//console.log("OK");
 			if(Sequencer.current==Sequencer.steps.length)
 				Sequencer.current = 0;
 			if(Sequencer.steps[Sequencer.current].length>0) {
@@ -38,7 +43,7 @@ machine.factory('Sequencer', ['$interval', function($interval) {
 		loop: function(callback) {
 			Sequencer.interval = $interval(function(){
 				Sequencer.next(callback);
-			}, 250);
+			}, Sequencer.time);
 		}
 	};
 	return Sequencer;

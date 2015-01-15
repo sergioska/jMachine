@@ -11,6 +11,9 @@
   margin-left: 20px;
   display: inline-block;
 }
+.horizontal-container {
+  margin-left: 20px;
+}
 #swatch {
   width: 100px;
   height: 100px;
