@@ -127,8 +127,10 @@ machine.controller('MachineController', ['$scope', 'Sound', 'Sequencer', functio
 		}
         // paste mode
 		if($scope.isPasting) {
+			console.log("IS PASTING");
             for(var i=0;i<pattern.length;i++){
                 if(pattern[i].number===nPattern){
+                	console.log("HIT");
                     pattern[i].matrix=pattern[$scope.copyClipboard].matrix;
                     return;
                 }
@@ -138,30 +140,41 @@ machine.controller('MachineController', ['$scope', 'Sound', 'Sequencer', functio
             var index = 0;
             for(var k=0;k<pattern.length;k++){
                 if(pattern[k].number===$scope.copyClipboard)
-                    index=pattern[k].number;
+                    index=k;
             }
+            console.log("SELECTED PATTERN: " + index);
+            console.log(pattern[index].matrix);
+            console.log("SELECTED PATTERN");
             $scope.matrix = pattern[index].matrix;
             tmppattern.matrix = $scope.matrix;
+            console.log(tmppattern);
+            //tmppattern.matrix = pattern[index].matrix;
             pattern.push(tmppattern);
-			
+			console.log("AFTER PUSH");
+			console.log(pattern);
 			$scope.copyClipboard = 0;
 			$scope.resetPatternAction();
 			return;
 		}
+		console.log("NPATTERN: " + nPattern);
 		$scope.patternSelected = nPattern;
 		for(var j=0;j<pattern.length;j++) {
 			if(pattern[j].number===nPattern) {
+				console.log("PATTERN FOUNDED IS: " + pattern[j].number);
+				console.log(pattern);
 				$scope.matrix = pattern[j].matrix;
-				$scope.select(0);
+				$scope.select($scope.mapSelected);
 				return;
 			}
 			else continue;
 		}
+		console.log("NEW PATTERN");
 		var newpattern = new Pattern();
 		newpattern.number = nPattern;
 		$scope.matrix = newpattern.matrix;
-        $scope.select(0);
+        $scope.select($scope.mapSelected);
         pattern.push(newpattern);
+        console.log(pattern);
 	};
 
 	$scope.copyPattern = function() {
