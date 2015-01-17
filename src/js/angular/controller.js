@@ -3,12 +3,12 @@ var machine = angular.module('appMachine', ['ngSanitize','ui.select', 'ui.slider
 machine.controller('MachineController', ['$scope', 'Sound', 'Sequencer', function($scope, Sound, sequencer){
 
 	var drums = {};
-	var pattern = [];
+	var pattern = new PatternManager();
 	$scope.patternSelected = 0;
 	$scope.patternDisabled = [];
 	$scope.sync = false;
 	$scope.mapSelected = 0;
-	$scope.matrix = [[]];
+	$scope.matrix = [];
 	$scope.drumItems = ['909 Dreams', '8-bit'];
 	$scope.nVolume = 1.0;
 	$scope.sounds = [];
@@ -41,7 +41,7 @@ machine.controller('MachineController', ['$scope', 'Sound', 'Sequencer', functio
 
 		$scope.jsonSounds = Object.create($scope.bankSelected);
 		drums = composition.createInstrument('drums', $scope.jsonSounds);
-        console.log(drums.volumes.length);
+
 		$scope.select(0);
 		$scope.setPattern($scope.patternSelected);
 
@@ -121,65 +121,40 @@ machine.controller('MachineController', ['$scope', 'Sound', 'Sequencer', functio
 	};
 
 	$scope.setPattern = function(nPattern) {
+
         // copy mode
 		if($scope.isCopying) {
 			$scope.copyClipboard = nPattern;
 		}
-        // paste mode
+
+		// paste mode
 		if($scope.isPasting) {
-			console.log("IS PASTING");
-            for(var i=0;i<pattern.length;i++){
-                if(pattern[i].number===nPattern){
-                	console.log("HIT");
-                    pattern[i].matrix=pattern[$scope.copyClipboard].matrix;
-                    return;
-                }
-            }
-			var tmppattern = new Pattern();
-            tmppattern.number = nPattern;
-            var index = 0;
-            for(var k=0;k<pattern.length;k++){
-                if(pattern[k].number===$scope.copyClipboard)
-                    index=k;
-            }
-            console.log("SELECTED PATTERN: " + index);
-            console.log(pattern[index].matrix);
-            console.log("SELECTED PATTERN");
-            $scope.matrix = pattern[index].matrix;
-            tmppattern.matrix = $scope.matrix;
-            console.log(tmppattern);
-            //tmppattern.matrix = pattern[index].matrix;
-            pattern.push(tmppattern);
-			console.log("AFTER PUSH");
-			console.log(pattern);
-			$scope.copyClipboard = 0;
-			$scope.resetPatternAction();
-			return;
+			var srcPattern = pattern.getPattern($scope.copyClipboard);
+			pattern.paste(srcPattern.number, nPattern);
 		}
-		console.log("NPATTERN: " + nPattern);
-		$scope.patternSelected = nPattern;
-		for(var j=0;j<pattern.length;j++) {
-			if(pattern[j].number===nPattern) {
-				console.log("PATTERN FOUNDED IS: " + pattern[j].number);
-				console.log(pattern);
-				$scope.matrix = pattern[j].matrix;
-				$scope.select($scope.mapSelected);
-				return;
-			}
-			else continue;
-		}
-		console.log("NEW PATTERN");
-		var newpattern = new Pattern();
-		newpattern.number = nPattern;
-		$scope.matrix = newpattern.matrix;
+
+        var patternItem = null;
+
+        patternItem = pattern.getPattern(nPattern);
+        $scope.patternSelected = nPattern;
+
+        if(patternItem) {
+        	//console.log("PATTERN ALREADY EXISTS!!!");
+        	$scope.matrix = patternItem.matrix;
+        	$scope.select($scope.mapSelected);
+        	return;
+        }
+        //console.log("PATTERN IS NEW");
+        patternItem = pattern.setPattern(nPattern, []);
+        $scope.matrix = patternItem.matrix;
+        //console.log($scope.matrix);
         $scope.select($scope.mapSelected);
-        pattern.push(newpattern);
-        console.log(pattern);
+
 	};
 
 	$scope.copyPattern = function() {
-        for(var i=0;i<pattern.length;i++){
-            $scope.animationPattern[pattern[i].number]=1;
+        for(var i=0;i<pattern.getPatterns().length;i++) {
+        	$scope.animationPattern[pattern.getPattern(i).number]=1;
         }
 		$scope.isCopying = true;
 		$scope.isPasting = false;
@@ -192,7 +167,7 @@ machine.controller('MachineController', ['$scope', 'Sound', 'Sequencer', functio
 		$scope.isPasting = true;
 		$scope.isCopying = false;
         for(var i=0;i<12;i++)
-		  $scope.animationPattern[i]=1;
+		  $scope.animationPattern[pattern.getPattern(i).number]=1;
 		$scope.animationCopy = false;
 		$scope.animationPaste = true;
 	};
