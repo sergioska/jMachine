@@ -36,9 +36,10 @@ PatternManager.prototype.setPattern = function(number, matrix) {
 		if(this.pattern[i].number===number) {
 			var newItem = new Pattern();
 			newItem.number=number;
-			if (matrix.length!==0)
+			if (matrix.length!==0) {
 				newItem.matrix = matrix;
-			this.pattern[i] = newItem;
+			}
+			this.pattern[i] = Utils.deepCopy(newItem);
 			return this.pattern[i];
 		}
 	}
@@ -67,11 +68,7 @@ PatternManager.prototype.getPatterns = function() {
 PatternManager.prototype.paste = function(srcItem, dstItem) {
 	var srcPattern = this.getPattern(srcItem);
 	var dstPattern = this.getPattern(dstItem);
-	if(dstPattern){
-		console.log(srcPattern);
-		this.setPattern(dstItem, srcPattern.matrix);
-		return;
-	}
-
+	this.setPattern(dstItem, srcPattern.matrix);
+	return;
 };
 

@@ -130,7 +130,9 @@ machine.controller('MachineController', ['$scope', 'Sound', 'Sequencer', functio
 		// paste mode
 		if($scope.isPasting) {
 			var srcPattern = pattern.getPattern($scope.copyClipboard);
+			var matrixBak = srcPattern.matrix;
 			pattern.paste(srcPattern.number, nPattern);
+			pattern.setPattern(srcPattern.number, matrixBak);
 		}
 
         var patternItem = null;
@@ -211,6 +213,7 @@ machine.controller('MachineController', ['$scope', 'Sound', 'Sequencer', functio
 	}, true);
 
 	$scope.$watch('sounds', function(){
+		console.log("SOUNDS");
 		sequencer.steps = $scope.updateMatrix();
 	}, true);
 
