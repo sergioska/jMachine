@@ -54,6 +54,7 @@ machine.controller('MachineController', ['$scope', 'Sound', 'Sequencer', functio
 			itemDummy = {label: '...', volume: '0.0', disabled: true};
 			$scope.sounds.push(itemDummy);
 		}
+		console.log($scope.sounds);
 		//console.log($scope.sounds);
 	};
 
@@ -213,13 +214,11 @@ machine.controller('MachineController', ['$scope', 'Sound', 'Sequencer', functio
 	}, true);
 
 	$scope.$watch('sounds', function(){
-		console.log("SOUNDS");
 		sequencer.steps = $scope.updateMatrix();
 	}, true);
 
 	$scope.$watch('bpm', function(){
 		sequencer.setTime($scope.bpm);
-		console.log($scope.isPlaying);
 		if($scope.isPlaying) {
 			sequencer.resetInterval();
 			sequencer.loop(function(output){
