@@ -4,9 +4,11 @@ machine.controller('MachineController', ['$scope', 'Sound', 'Sequencer', functio
 
 	var drums = {};
 	var pattern = new PatternManager();
+    // select first pattern as default
 	$scope.patternSelected = 0;
 	$scope.patternDisabled = [];
 	$scope.sync = false;
+    // select first sound as default in map sounds
 	$scope.mapSelected = 0;
 	$scope.matrix = [];
 	$scope.drumItems = ['909 Dreams', '8-bit'];
@@ -54,8 +56,7 @@ machine.controller('MachineController', ['$scope', 'Sound', 'Sequencer', functio
 			itemDummy = {label: '...', volume: '0.0', disabled: true};
 			$scope.sounds.push(itemDummy);
 		}
-		console.log($scope.sounds);
-		//console.log($scope.sounds);
+
 	};
 
 	$scope.run = function() {
