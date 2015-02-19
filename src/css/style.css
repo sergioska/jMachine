@@ -84,7 +84,9 @@
 	width: auto;
 	border: 2px solid;
 	border-radius: 8px;	
-    background-color: #788E9C;
+	background-image: url("../images/8bit3d.png");
+    background-repeat: no-repeat;
+    background-position: top right;
     color: #eded7f;
 }
 

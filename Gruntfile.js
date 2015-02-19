@@ -41,7 +41,7 @@ module.exports = function(grunt) {
     			files: [
     				{
     					expand: true,
-    				        cwd: 'bower_components/jquery/dist',	
+    				    cwd: 'bower_components/jquery/dist',	
     					src: ['jquery.min.js'], 
     					dest: 'dist/js'
     				},
@@ -104,6 +104,12 @@ module.exports = function(grunt) {
                         cwd: 'bower_components/modernizr',
                         src: ['modernizr.js'],
                         dest: 'dist/js'
+                    },
+                    {
+                        expand: true,
+                        cwd: 'src/images',
+                        src: ['*.png'],
+                        dest: 'dist/images'
                     }
     			]
     		}
@@ -123,7 +129,7 @@ module.exports = function(grunt) {
         },
         watch: {
             scripts: {
-                files: ['src/js/**/*.js', 'src/css/*.css'],
+                files: ['src/js/**/*.js', 'src/css/*.css', 'src/images/*.png'],
                 tasks: ['client'],
                 options: {
                 spawn: false,

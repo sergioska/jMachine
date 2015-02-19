@@ -15,7 +15,7 @@ machine.controller('MachineController', ['$scope', 'Sound', 'Sequencer', functio
 	$scope.nVolume = 1.0;
 	$scope.sounds = [];
     $scope.jsonSounds = {};
-    $scope.bankSelected = Drums64;
+    $scope.bankSelected = Bit8;
     $scope.playLabel = 'Play';
     $scope.animation = false;
     // enable/disable animation on pause button 
@@ -33,6 +33,7 @@ machine.controller('MachineController', ['$scope', 'Sound', 'Sequencer', functio
     $scope.bpm = 90;
     
 	$scope.init = function() {
+		$scope.drumItems.selected = "8-bit";
         drums = {};
         var itemDummy = {};
         var itemSound = {};
